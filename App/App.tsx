@@ -17,6 +17,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // Screens
 import {
   DSRPage,
+  SalesTrackerPage,
 } from '../src/pages';
 
 
@@ -26,7 +27,8 @@ const App: () => Node = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={DSRPage} />
+        <Stack.Screen name="HomePage" component={DSRPage} />
+        <Stack.Screen name="SalesTrackerPage" component={SalesTrackerPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );
