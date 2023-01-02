@@ -1,0 +1,1 @@
+export { default as DSRPage } from './DSR';
