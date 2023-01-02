@@ -15,9 +15,18 @@ const Stack = createNativeStackNavigator();
 const App: () => Node = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="HomePage" component={DSRPage} />
-        <Stack.Screen name="SalesTrackerPage" component={SalesTrackerPage} />
+      <Stack.Navigator initialRouteName="DSR">
+        <Stack.Screen
+          name="DSR"
+          component={DSRPage}
+          options={{
+            title: 'Daily Sales Report (DSR)',
+          }}
+        />
+        <Stack.Screen
+          name="Sales Tracker"
+          component={SalesTrackerPage}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

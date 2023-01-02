@@ -2,14 +2,16 @@ import React from 'react';
 import {
   View,
   Text,
+  ScrollView,
 } from 'react-native';
 
 const DSR = () => {
-
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>This is DSR Screen</Text>
-    </View>
+    <ScrollView>
+      <View>
+        <Text>This is DSR Screen</Text>
+      </View>
+    </ScrollView>
   );
 }
 
