@@ -3,6 +3,7 @@ import {
   View,
   ScrollView,
   TextInput,
+  Text,
 } from 'react-native';
 import { DataTable } from 'react-native-paper';
 
@@ -13,96 +14,140 @@ const DSR = () => {
       quantity: 100,
       sold: 50,
       leftOver: (100 - 50),
+      price: 10,
     },
     {
       name: 'Hotdog',
       quantity: 50,
       sold: 23,
       leftOver: (50 - 23),
+      price: 20,
     },
     {
       name: 'Pita Wrap',
       quantity: 300,
       sold: 79,
       leftOver: (300 - 79),
+      price: 15,
     },
     {
       name: 'Tomatoes',
       quantity: 130,
       sold: 43,
       leftOver: (130 - 43),
+      price: 7,
     },
     {
       name: 'Cheese',
       quantity: 100,
       sold: 50,
       leftOver: (100 - 50),
+      price: 10,
     },
     {
       name: 'Hotdog',
       quantity: 50,
       sold: 23,
       leftOver: (50 - 23),
+      price: 20,
     },
     {
       name: 'Pita Wrap',
       quantity: 300,
       sold: 79,
       leftOver: (300 - 79),
+      price: 15,
     },
     {
       name: 'Tomatoes',
       quantity: 130,
       sold: 43,
       leftOver: (130 - 43),
+      price: 7,
     },
     {
       name: 'Cheese',
       quantity: 100,
       sold: 50,
       leftOver: (100 - 50),
+      price: 10,
     },
     {
       name: 'Hotdog',
       quantity: 50,
       sold: 23,
       leftOver: (50 - 23),
+      price: 20,
     },
     {
       name: 'Pita Wrap',
       quantity: 300,
       sold: 79,
       leftOver: (300 - 79),
+      price: 15,
     },
     {
       name: 'Tomatoes',
       quantity: 130,
       sold: 43,
       leftOver: (130 - 43),
+      price: 7,
     },
     {
       name: 'Cheese',
       quantity: 100,
       sold: 50,
       leftOver: (100 - 50),
+      price: 10,
     },
     {
       name: 'Hotdog',
       quantity: 50,
       sold: 23,
       leftOver: (50 - 23),
+      price: 20,
     },
     {
       name: 'Pita Wrap',
       quantity: 300,
       sold: 79,
       leftOver: (300 - 79),
+      price: 15,
     },
     {
       name: 'Tomatoes',
       quantity: 130,
       sold: 43,
       leftOver: (130 - 43),
+      price: 7,
+    },
+    {
+      name: 'Cheese',
+      quantity: 100,
+      sold: 50,
+      leftOver: (100 - 50),
+      price: 10,
+    },
+    {
+      name: 'Hotdog',
+      quantity: 50,
+      sold: 23,
+      leftOver: (50 - 23),
+      price: 20,
+    },
+    {
+      name: 'Pita Wrap',
+      quantity: 300,
+      sold: 79,
+      leftOver: (300 - 79),
+      price: 15,
+    },
+    {
+      name: 'Tomatoes',
+      quantity: 130,
+      sold: 43,
+      leftOver: (130 - 43),
+      price: 7,
     },
   ]);
 
@@ -151,14 +196,18 @@ const DSR = () => {
           <DataTable.Title numeric>In</DataTable.Title>
           <DataTable.Title numeric>Out</DataTable.Title>
           <DataTable.Title numeric>LO</DataTable.Title>
+          <DataTable.Title numeric>Amount</DataTable.Title>
         </DataTable.Header>
 
         {stocks.map((stock, i) => {
-          
           return (
             <DataTable.Row key={i}>
-              <DataTable.Cell>{stock.name}</DataTable.Cell>
-              <DataTable.Cell numeric>{stock.quantity}</DataTable.Cell>
+              <DataTable.Cell>{`${stock.name}`}</DataTable.Cell>
+              <DataTable.Cell numeric>
+                <View>
+                  <Text>{stock.quantity}</Text>
+                </View>
+              </DataTable.Cell>
               <DataTable.Cell style={{ justifyContent: 'flex-end' }}>
                 <View>
                   <TextInput
@@ -177,9 +226,62 @@ const DSR = () => {
                   />
                 </View>
               </DataTable.Cell>
+              <DataTable.Cell style={{ justifyContent: 'flex-end' }}>
+                <View>
+                  <Text>Php {stock.price * stock.sold}</Text>
+                </View>
+              </DataTable.Cell>
             </DataTable.Row>
           )
         })}
+
+        <DataTable.Row>
+          <DataTable.Cell>Total</DataTable.Cell>
+          <DataTable.Cell numeric>
+            <View>
+              <Text>{
+                String(stocks
+                  .map(stock => stock.quantity)
+                  .reduce((currentStockQuantity, nextStockQuantity) => currentStockQuantity + nextStockQuantity))  
+              }</Text>
+            </View>
+          </DataTable.Cell>
+          <DataTable.Cell style={{ justifyContent: 'flex-end' }}>
+            <View>
+              <TextInput
+                placeholder="Total"
+                onChangeText={total => console.log(total)}
+                value={
+                  String(stocks
+                    .map(stock => stock.sold)
+                    .reduce((currentStockSold, nextStockSold) => currentStockSold + nextStockSold))
+                }
+              />
+            </View>
+          </DataTable.Cell>
+          <DataTable.Cell style={{ justifyContent: 'flex-end' }}>
+            <View>
+              <TextInput
+                placeholder="Total"
+                onChangeText={total => console.log(total)}
+                value={
+                  String(stocks
+                    .map(stock => stock.leftOver)
+                    .reduce((currentStockLeftover, nextStockLeftover) => currentStockLeftover + nextStockLeftover))
+                }
+              />
+            </View>
+          </DataTable.Cell>
+          <DataTable.Cell style={{ justifyContent: 'flex-end' }}>
+            <View>
+              <Text>Php {
+                stocks
+                  .map(stock => stock.price * stock.sold)
+                  .reduce((currentStockAmount, nextStockAmount) => currentStockAmount + nextStockAmount)
+              }</Text>
+            </View>
+          </DataTable.Cell>
+        </DataTable.Row>
       </DataTable>
     </ScrollView>
   );
