@@ -155,6 +155,7 @@ const DSR = () => {
     newValue = typeof newValue === 'string' ?
       parseInt(newValue) :
       newValue;
+    newValue = newValue || 0;
 
     switch (field) {
       case 'in':
@@ -165,8 +166,8 @@ const DSR = () => {
             if (i !== itemIndex) return stock;
             return {
               ...stock,
-              sold: newValue || 0,
-              leftOver: stock.quantity - newValue || 0,
+              sold: newValue,
+              leftOver: stock.quantity - newValue,
             };
           })
         );
@@ -177,8 +178,8 @@ const DSR = () => {
             if (i !== itemIndex) return stock;
             return {
               ...stock,
-              leftOver: newValue || 0,
-              sold: stock.quantity - newValue || 0,
+              leftOver: newValue,
+              sold: stock.quantity - newValue,
             };
           })
         );
