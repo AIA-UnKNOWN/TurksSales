@@ -6,6 +6,7 @@ import {
   Text,
 } from 'react-native';
 import { DataTable } from 'react-native-paper';
+import commaNumber from 'comma-number';
 
 const DSR = () => {
   const [stocks, setStocks] = useState<Array<any>>([
@@ -229,22 +230,22 @@ const DSR = () => {
               </DataTable.Cell>
               <DataTable.Cell style={{ justifyContent: 'flex-end' }}>
                 <View>
-                  <Text>Php {stock.price * stock.sold}</Text>
+                  <Text>Php {commaNumber(stock.price * stock.sold)}</Text>
                 </View>
               </DataTable.Cell>
             </DataTable.Row>
           )
         })}
 
-        <DataTable.Row>
+        <DataTable.Row style={{ backgroundColor: '#c9c9c9' }}>
           <DataTable.Cell>Total</DataTable.Cell>
           <DataTable.Cell numeric>
             <View>
-              <Text>{
+              <Text>{commaNumber(
                 String(stocks
                   .map(stock => stock.quantity)
                   .reduce((currentStockQuantity, nextStockQuantity) => currentStockQuantity + nextStockQuantity))  
-              }</Text>
+              )}</Text>
             </View>
           </DataTable.Cell>
           <DataTable.Cell style={{ justifyContent: 'flex-end' }}>
@@ -252,11 +253,11 @@ const DSR = () => {
               <TextInput
                 placeholder="Total"
                 onChangeText={total => console.log(total)}
-                value={
+                value={commaNumber(
                   String(stocks
                     .map(stock => stock.sold)
                     .reduce((currentStockSold, nextStockSold) => currentStockSold + nextStockSold))
-                }
+                )}
               />
             </View>
           </DataTable.Cell>
@@ -265,21 +266,21 @@ const DSR = () => {
               <TextInput
                 placeholder="Total"
                 onChangeText={total => console.log(total)}
-                value={
+                value={commaNumber(
                   String(stocks
                     .map(stock => stock.leftOver)
                     .reduce((currentStockLeftover, nextStockLeftover) => currentStockLeftover + nextStockLeftover))
-                }
+                )}
               />
             </View>
           </DataTable.Cell>
           <DataTable.Cell style={{ justifyContent: 'flex-end' }}>
             <View>
-              <Text>Php {
+              <Text>Php {commaNumber(
                 stocks
                   .map(stock => stock.price * stock.sold)
                   .reduce((currentStockAmount, nextStockAmount) => currentStockAmount + nextStockAmount)
-              }</Text>
+              )}</Text>
             </View>
           </DataTable.Cell>
         </DataTable.Row>
