@@ -190,6 +190,24 @@ const DSR = () => {
     }
   }
 
+  const totalQuantity = commaNumber(stocks
+    .map(stock => stock.quantity)
+    .reduce((currentStockQuantity, nextStockQuantity) => currentStockQuantity + nextStockQuantity)
+  );
+  const totalSold = commaNumber(stocks
+    .map(stock => stock.sold)
+    .reduce((currentStockSold, nextStockSold) => currentStockSold + nextStockSold)
+  );
+  const totalLeftOver = commaNumber(stocks
+    .map(stock => stock.leftOver)
+    .reduce((currentStockLeftover, nextStockLeftover) => currentStockLeftover + nextStockLeftover)
+  );
+  const totalAmount = commaNumber(
+    stocks
+      .map(stock => stock.price * stock.sold)
+      .reduce((currentStockAmount, nextStockAmount) => currentStockAmount + nextStockAmount)
+  );
+
   return (
     <ScrollView>
       <DataTable>
@@ -241,23 +259,15 @@ const DSR = () => {
           <DataTable.Cell>Total</DataTable.Cell>
           <DataTable.Cell numeric>
             <View>
-              <Text>{commaNumber(
-                String(stocks
-                  .map(stock => stock.quantity)
-                  .reduce((currentStockQuantity, nextStockQuantity) => currentStockQuantity + nextStockQuantity))  
-              )}</Text>
+              <Text>{totalQuantity}</Text>
             </View>
           </DataTable.Cell>
           <DataTable.Cell style={{ justifyContent: 'flex-end' }}>
             <View>
               <TextInput
                 placeholder="Total"
-                onChangeText={total => console.log(total)}
-                value={commaNumber(
-                  String(stocks
-                    .map(stock => stock.sold)
-                    .reduce((currentStockSold, nextStockSold) => currentStockSold + nextStockSold))
-                )}
+                onChangeText={total => null}
+                value={totalSold}
               />
             </View>
           </DataTable.Cell>
@@ -265,22 +275,14 @@ const DSR = () => {
             <View>
               <TextInput
                 placeholder="Total"
-                onChangeText={total => console.log(total)}
-                value={commaNumber(
-                  String(stocks
-                    .map(stock => stock.leftOver)
-                    .reduce((currentStockLeftover, nextStockLeftover) => currentStockLeftover + nextStockLeftover))
-                )}
+                onChangeText={total => null}
+                value={totalLeftOver}
               />
             </View>
           </DataTable.Cell>
           <DataTable.Cell style={{ justifyContent: 'flex-end' }}>
             <View>
-              <Text>Php {commaNumber(
-                stocks
-                  .map(stock => stock.price * stock.sold)
-                  .reduce((currentStockAmount, nextStockAmount) => currentStockAmount + nextStockAmount)
-              )}</Text>
+              <Text>Php {totalAmount}</Text>
             </View>
           </DataTable.Cell>
         </DataTable.Row>
