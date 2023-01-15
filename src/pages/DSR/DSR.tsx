@@ -1,3 +1,4 @@
+import styles from './DSR.styles';
 import React, { useState } from 'react';
 import {
   View,
@@ -262,7 +263,7 @@ const DSR = () => {
               <Text>{totalQuantity}</Text>
             </View>
           </DataTable.Cell>
-          <DataTable.Cell style={{ justifyContent: 'flex-end' }}>
+          <DataTable.Cell style={styles.row}>
             <View>
               <TextInput
                 placeholder="Total"
@@ -271,7 +272,7 @@ const DSR = () => {
               />
             </View>
           </DataTable.Cell>
-          <DataTable.Cell style={{ justifyContent: 'flex-end' }}>
+          <DataTable.Cell style={styles.row}>
             <View>
               <TextInput
                 placeholder="Total"
@@ -280,7 +281,7 @@ const DSR = () => {
               />
             </View>
           </DataTable.Cell>
-          <DataTable.Cell style={{ justifyContent: 'flex-end' }}>
+          <DataTable.Cell style={styles.row}>
             <View>
               <Text>Php {totalAmount}</Text>
             </View>
