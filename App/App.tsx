@@ -1,7 +1,8 @@
+import 'react-native-gesture-handler';
 import React from 'react';
 import type {Node} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Provider as PaperProvider } from 'react-native-paper';
 
 // Screens
@@ -11,25 +12,22 @@ import {
 } from '../src/pages';
 
 
-const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
 const App: () => Node = () => {
   return (
     <PaperProvider>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="DSR">
-          <Stack.Screen
+        <Drawer.Navigator>
+          <Drawer.Screen
             name="DSR"
             component={DSRPage}
-            options={{
-              title: 'Daily Sales Report (DSR)',
-            }}
           />
-          <Stack.Screen
+          <Drawer.Screen
             name="Sales Tracker"
             component={SalesTrackerPage}
           />
-        </Stack.Navigator>
+        </Drawer.Navigator>
       </NavigationContainer>
     </PaperProvider>
   );
