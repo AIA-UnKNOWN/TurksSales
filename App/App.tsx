@@ -18,7 +18,7 @@ const App: () => Node = () => {
   return (
     <PaperProvider>
       <NavigationContainer>
-        <Drawer.Navigator>
+        <Drawer.Navigator initialRouteName="DSR">
           <Drawer.Screen
             name="DSR"
             component={DSRPage}
