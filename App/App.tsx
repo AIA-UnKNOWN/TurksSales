@@ -9,6 +9,7 @@ import { Provider as PaperProvider } from 'react-native-paper';
 import {
   DSRPage,
   SalesTrackerPage,
+  Admin,
 } from '../src/pages';
 
 
@@ -26,6 +27,10 @@ const App: () => Node = () => {
           <Drawer.Screen
             name="Sales Tracker"
             component={SalesTrackerPage}
+          />
+          <Drawer.Screen
+            name="Admin"
+            component={Admin}
           />
         </Drawer.Navigator>
       </NavigationContainer>
