@@ -4,6 +4,10 @@ import {
   Text,
 } from 'react-native';
 
+// Pages
+import {
+  Login,
+} from '..';
 // Hooks
 import useAdmin from './Admin.hook';
 
@@ -17,11 +21,7 @@ const Admin = () => {
       <View>
         <Text>Welcome back Admin!</Text>
       </View>
-    ) : (
-      <View>
-        <Text>Please login first.</Text>
-      </View>
-    );
+    ) : <Login />;
 }
 
 export default Admin;
