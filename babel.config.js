@@ -7,5 +7,11 @@ module.exports = {
   },
   plugins: [
     'react-native-reanimated/plugin',
+    ['module-resolver', {
+      alias: {
+        // Should be mirrored in tsconfig.json
+        '@src': './src'
+      }
+    }],
   ],
 };
